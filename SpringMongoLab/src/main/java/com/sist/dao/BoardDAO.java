@@ -10,9 +10,9 @@ import com.mongodb.MongoClient;
 
 @Repository
 public class BoardDAO {
-	private MongoClient mc;		//connection
-	private DBCollection dbc;	//table
-	private DB db;				//database
+	private MongoClient mc;		//RDBMS의 Connection 역할 
+	private DBCollection dbc;	//RDBMS의 table 개념
+	private DB db;				//RDBMS의 database 이름 ==> ORCL과 같은 것
 	
 	public BoardDAO(){
 		try{
