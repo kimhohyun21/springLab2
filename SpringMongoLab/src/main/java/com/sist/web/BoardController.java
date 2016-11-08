@@ -69,7 +69,8 @@ public class BoardController {
 	@RequestMapping("main/update_ok.do")
 	public String board_update(BoardVO vo, int page, Model model){
 		boolean bCheck=dao.boardUpdateOk(vo);
-		
+	
+		model.addAttribute("no", vo.getNo());
 		model.addAttribute("page", page);
 		model.addAttribute("bCheck", bCheck);
 		return "main/update_ok";

@@ -156,6 +156,30 @@ public class BoardDAO {
 	public boolean boardUpdateOk(BoardVO vo){
 		boolean bCheck=false;
 		
+		try{
+			BasicDBObject where=new BasicDBObject();
+			
+			where.put("no", vo.getNo()); // 특정한 값 no를 찾기 위한 set
+			
+			BasicDBObject obj=(BasicDBObject) dbc.findOne(where); //no값에 상응하는 데이터를 찾아라
+			String db_pwd=obj.getString("pwd");
+			
+			if(db_pwd.equals(vo.getPwd())){
+				BasicDBObject updateObj=new BasicDBObject();
+				updateObj.put("name", vo.getName());
+				updateObj.put("subject", vo.getSubject());
+				updateObj.put("contet", vo.getContent());
+				updateObj.put("hit", obj.getInt("hit")-2);
+				dbc.update(where, new BasicDBObject("$set", updateObj)); //새로운 값으로 set된 updateObj를 기존의 값에 업데이트
+				bCheck=true;
+			}else{
+				bCheck=false;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return bCheck;
 	}
 }

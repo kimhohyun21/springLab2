@@ -40,15 +40,15 @@
 					<a href="list.do?page=${page }">
 						<img alt="list button" src="img/btn_list.gif">
 					</a>
-					<a href="reply.do?page=${page }&no=${vo.no }">
+					<%-- <a href="reply.do?page=${page }&no=${vo.no }">
 						<img alt="reply button" src="img/btn_reply.gif">
-					</a>
+					</a> --%>
 					<a href="update.do?page=${page }&no=${vo.no }">
 						<img alt="modify button" src="img/btn_modify.gif">
 					</a>
-					<a href="delete.do?page=${page }&no=${vo.no }">
+					<%-- <a href="delete.do?page=${page }&no=${vo.no }">
 						<img alt="delete button" src="img/btn_delete.gif">
-					</a>
+					</a> --%>
 				</td>
 			</tr>
 		</table>
