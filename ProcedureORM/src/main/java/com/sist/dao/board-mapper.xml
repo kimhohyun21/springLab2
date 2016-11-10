@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 프로시져도 여기서 사용 -->
+<mapper namespace="com.sist.dao.board-mapper">
+
+	<!-- boardVO와 board 테이블의 컬럼명 매핑 -->
+	<resultMap type="Board" id="codeBeanResult">
+		<result property="no" column="no"/>
+		<result property="name" column="name"/>
+		<result property="subject" column="subject"/>
+		<result property="content" column="content"/>	
+		<result property="pwd" column="pwd"/>
+		<result property="regdate" column="regdate"/>
+		<result property="hit" column="hit"/>
+	</resultMap>
+	
+	<!-- 리스트 받아오기 -->
+	<!-- param 값의 속성 매핑 -->
+	<parameterMap type="hashmap" id="listDataMap">
+		<!-- mode는 입력출력과 관련된 속성 -->
+		<parameter property="pStart" mode="IN" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+		<parameter property="pEnd" mode="IN" jdbcType="INTEGER" javaType="java.lang.Integer"/> 
+		<parameter property="pResult" mode="OUT" jdbcType="CURSOR" resultMap="codeBeanResult"/>
+	</parameterMap>	
+	<select id="boardListData" statementType="CALLABLE" parameterMap="listDataMap">
+		{CALL boardListData(?,?,?)}
+	</select>
+	
+	<!-- totalPage 받아오기 -->
+	<parameterMap type="hashMap" id="totalPage">
+		<parameter property="pNumber" mode="OUT" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+	</parameterMap>	
+	<select id="boardTotalPage" statementType="CALLABLE" parameterMap="totalPage">
+		{CALL boardTotalPage(?)}
+	</select>
+	
+</mapper>

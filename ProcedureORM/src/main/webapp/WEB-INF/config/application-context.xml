@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<context:annotation-config/>
+	<context:component-scan base-package="com.sist.*"/>	
+	
+	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@211.238.142.88:1521:ORCL"
+		p:username="scott"
+		p:password="tiger"
+	/>
+	
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="ds"
+		p:configLocation="/WEB-INF/config/config.xml"
+	/>
+	
+	<bean id="sst" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg>
+			<ref bean="ssf"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="dao" class="com.sist.dao.BoardDAO"
+		p:sqlSessionTemplate-ref="sst"
+	/>
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/"
+		p:suffix=".jsp"
+	/>
+</beans>
