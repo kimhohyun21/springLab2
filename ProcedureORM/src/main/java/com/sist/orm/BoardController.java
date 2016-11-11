@@ -38,4 +38,11 @@ public class BoardController {
 		
 		return "board/insert";
 	}
+	
+	@RequestMapping("board/insert_ok.do")
+	public String boardInsert_ok(BoardVO vo){
+		dao.boardInsert(vo);
+		
+		return "redirect:/board/list.do";
+	}
 }

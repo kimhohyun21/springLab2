@@ -32,4 +32,13 @@ public class BoardDAO extends SqlSessionDaoSupport{
 		return totalPage;
 	}
 	
+	public void boardInsert(BoardVO vo){		
+		Map map=new HashMap();
+		map.put("pName", vo.getName());
+		map.put("pSub", vo.getSubject());
+		map.put("pCont", vo.getContent());
+		map.put("pPwd", vo.getPwd());
+		
+		getSqlSession().update("boardInsert", map);
+	}
 }

@@ -36,4 +36,16 @@
 		{CALL boardTotalPage(?)}
 	</select>
 	
+	<!-- 글쓰기 -->
+	<parameterMap type="hashmap" id="insertMap">
+		<!-- mode는 입력출력과 관련된 속성 -->
+		<parameter property="pName" mode="IN" jdbcType="VARCHAR" javaType="string"/>
+		<parameter property="pSub" mode="IN" jdbcType="VARCHAR" javaType="string"/> 
+		<parameter property="pCont" mode="IN" jdbcType="VARCHAR" javaType="string"/>
+		<parameter property="pPwd" mode="IN" jdbcType="VARCHAR" javaType="string"/>  
+	</parameterMap>	
+	<select id="boardInsert" statementType="CALLABLE" parameterMap="insertMap">
+		{CALL boardInsert(?,?,?,?)}
+	</select>
+	
 </mapper>
