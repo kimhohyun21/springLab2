@@ -29,21 +29,21 @@
 				<th width="20%">작성일</th>
 				<th width="10%">조회수</th>				
 			</tr>
-		<c:forEach var="dto" items="${list }">
+		<c:forEach var="vo" items="${list }">
 			<tr>
-				<td width="10%">${dto.no }</td>
+				<td width="10%">${vo.no }</td>
 				<td width="45%" id="left_td">
-					<a href="content.do?page=${curPage}&no=${dto.no }">
-						${dto.subject }
+					<a href="content.do?no=${vo.no }&page=${curPage}">
+						${vo.subject }
 					</a>
-					<fmt:formatDate var="regdate" value="${dto.regdate}" pattern="yyyy-MM-dd"/>
+					<fmt:formatDate var="regdate" value="${vo.regdate}" pattern="yyyy-MM-dd"/>
 					<c:if test="${regdate==today }">
 						<sup><img src="img/icon_new (2).gif"></sup>
 					</c:if>					
 				</td>
-				<td width="15%">${dto.name }</td>
+				<td width="15%">${vo.name }</td>
 				<td width="20%">${regdate }</td>
-				<td width="10%">${dto.hit }</td>		
+				<td width="10%">${vo.hit }</td>		
 			</tr>
 		</c:forEach>
 		</table>

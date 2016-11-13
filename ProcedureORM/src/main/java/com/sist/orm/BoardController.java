@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import com.sist.dao.*;
 
@@ -44,5 +43,22 @@ public class BoardController {
 		dao.boardInsert(vo);
 		
 		return "redirect:/board/list.do";
+	}
+	
+	@RequestMapping("board/content.do")
+	public String boardContentData(int no, int page, Model model){		
+		BoardVO vo=dao.boardContentData(no);
+		model.addAttribute(vo);
+		model.addAttribute(page);
+		System.out.println(vo.getSubject());	
+		return "board/content";
+	}
+	
+	@RequestMapping("board/update.do")
+	public String boardUpdateData(int no, int page, Model model){		
+		BoardVO vo=dao.boardUpdateData(no);
+		model.addAttribute(vo);
+		model.addAttribute(page);		
+		return "board/update";
 	}
 }

@@ -48,4 +48,21 @@
 		{CALL boardInsert(?,?,?,?)}
 	</select>
 	
+	<!-- 글 보기 -->
+	<parameterMap type="hashmap" id="contentDataMap">
+		<parameter property="pNo" mode="IN" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+		<parameter property="pResult" mode="OUT" resultMap="codeBeanResult" jdbcType="CURSOR"/>
+	</parameterMap>
+	<select id="boardContentData" parameterMap="contentDataMap" statementType="CALLABLE">
+		{CALL boardContentData(?,?)}				
+	</select>	
+	
+	<!-- 글 수정할 데이터 불러오기-->
+	<parameterMap type="hashmap" id="updateDataMap">
+		<parameter property="pNo" mode="IN" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+		<parameter property="pResult" mode="OUT" resultMap="codeBeanResult" jdbcType="CURSOR"/>
+	</parameterMap>
+	<select id="boardUpdateData" parameterMap="updateDataMap" statementType="CALLABLE">
+		{CALL boardUpdateData(?,?)}				
+	</select>	
 </mapper>

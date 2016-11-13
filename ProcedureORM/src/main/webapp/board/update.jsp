@@ -10,37 +10,39 @@
 	<link rel="stylesheet" type="text/css" href="table.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript">
-		function enter(){
-			if(event.keyCode==13){
-				send();	
-			}
-		};
-		
-		function send(){			
-			//계층구조 : window ==> document ==> form ==> input
-			var f=document.frm;
-			if(f.name.value==""){
-				alert('이름을 입력해주세요.');
-				f.name.focus();
-				return;
-			}
-			if(f.subject.value==""){
-				alert('제목을 입력해주세요.');
-				f.subject.focus();
-				return;
-			}
-			if(f.content.value==""){
-				alert('내용을 입력해주세요.');
-				f.content.focus();
-				return;
-			}
-			if(f.pwd.value==""){
-				alert('비밀번호를 입력해주세요.');
-				f.pwd.focus();
-				return;
-			}
-			f.submit();
-		};
+		$(function(){
+			$('#sendBtn').click(function(){
+				var name=$('#name').val();
+				if(name.trim()==""){
+					$('#name').focus();
+					alert("이름을 입력해주세요.");
+					$('#name').val("");
+					return;
+				}
+				var subject=$('#subject').val();
+				if(subject.trim()==""){
+					$('#subject').focus();
+					alert("제목을 입력해주세요.");
+					$('#subject').val("");
+					return;
+				}
+				var content=$('#content').val();
+				if(content.trim()==""){
+					$('#content').focus();
+					alert("내용을 입력해주세요.");
+					$('#content').val("");
+					return;
+				}
+				var pwd=$('#pwd').val();
+				if(pwd.trim()==""){
+					$('#pwd').focus();
+					alert("비밀번호를 입력해주세요.");
+					$('#pwd').val("");
+					return;
+				}
+				$('#frm').submit();
+			});
+		});
 	</script>
 </head>
 <body>
@@ -51,19 +53,19 @@
 				<tr>
 					<th width="20%">이름</th>
 					<td>
-						<input type="text" size="15" name="name" id="name">
+						<input type="text" size="15" name="name" id="name" value="${vo.name }">
 					</td>
 				</tr>
 				<tr>
 					<th width="20%">제목</th>
 					<td>
-						<input type="text" size="50" name="subject" id="subject">
+						<input type="text" size="50" name="subject" id="subject"  value="${vo.subject }">
 					</td>
 				</tr>
 				<tr>
 					<th width="20%">내용</th>
 					<td>
-						<textArea cols="52" rows="10" name="content" id="content"></textArea>
+						<textArea cols="52" rows="10" name="content" id="content">${vo.content }</textArea>
 					</td>
 				</tr>
 				<tr>

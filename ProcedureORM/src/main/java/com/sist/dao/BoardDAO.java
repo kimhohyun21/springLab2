@@ -41,4 +41,20 @@ public class BoardDAO extends SqlSessionDaoSupport{
 		
 		getSqlSession().update("boardInsert", map);
 	}
+	
+	public BoardVO boardContentData(int no){
+		Map map=new HashMap();
+		map.put("pNo", no);
+		getSqlSession().update("boardContentData", map);		
+		List<BoardVO> list=(List<BoardVO>)map.get("pResult");		
+		return list.get(0);
+	}
+	
+	public BoardVO boardUpdateData(int no){
+		Map map=new HashMap();
+		map.put("pNo", no);
+		getSqlSession().update("boardUpdateData", map);		
+		List<BoardVO> list=(List<BoardVO>)map.get("pResult");		
+		return list.get(0);
+	}
 }
