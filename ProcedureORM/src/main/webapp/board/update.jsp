@@ -10,50 +10,49 @@
 	<link rel="stylesheet" type="text/css" href="table.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript">
-		$(function(){
-			$('#sendBtn').click(function(){
-				var name=$('#name').val();
-				if(name.trim()==""){
-					$('#name').focus();
-					alert("이름을 입력해주세요.");
-					$('#name').val("");
-					return;
-				}
-				var subject=$('#subject').val();
-				if(subject.trim()==""){
-					$('#subject').focus();
-					alert("제목을 입력해주세요.");
-					$('#subject').val("");
-					return;
-				}
-				var content=$('#content').val();
-				if(content.trim()==""){
-					$('#content').focus();
-					alert("내용을 입력해주세요.");
-					$('#content').val("");
-					return;
-				}
-				var pwd=$('#pwd').val();
-				if(pwd.trim()==""){
-					$('#pwd').focus();
-					alert("비밀번호를 입력해주세요.");
-					$('#pwd').val("");
-					return;
-				}
-				$('#frm').submit();
-			});
-		});
+		function enter(){
+			if(event.keyCode==13){
+				send();	
+			}
+		};
+		
+		function send(){			
+			//계층구조 : window ==> document ==> form ==> input
+			var f=document.frm;
+			if(f.name.value==""){
+				alert('이름을 입력해주세요.');
+				f.name.focus();
+				return;
+			}
+			if(f.subject.value==""){
+				alert('제목을 입력해주세요.');
+				f.subject.focus();
+				return;
+			}
+			if(f.content.value==""){
+				alert('내용을 입력해주세요.');
+				f.content.focus();
+				return;
+			}
+			if(f.pwd.value==""){
+				alert('비밀번호를 입력해주세요.');
+				f.pwd.focus();
+				return;
+			}
+			f.submit();
+		};
 	</script>
 </head>
 <body>
 	<div align="center">
 		<h3>글쓰기</h3>
-		<form action="insert_ok.do" method="post" name="frm" id="frm">
+		<form action="update_ok.do?page=${page }" method="post" name="frm" id="frm">
 			<table id="insert_table">
 				<tr>
 					<th width="20%">이름</th>
 					<td>
 						<input type="text" size="15" name="name" id="name" value="${vo.name }">
+						<input type="hidden" name="no" value="${vo.no }">
 					</td>
 				</tr>
 				<tr>
@@ -78,7 +77,7 @@
 			<table id="button_table">
 				<tr>
 					<td>
-						<input type="button" value="글쓰기" id="sendBtn">
+						<input type="button" value="글쓰기" onclick="send()">
 						<input type="reset" value="취소" onclick="javascript:history.back()">
 					</td>
 				</tr>	

@@ -76,7 +76,7 @@
 			<table id="button_table">
 				<tr>
 					<td>
-						<input type="button" value="글쓰기" id="sendBtn">
+						<input type="button" value="글쓰기" onclick="send()">
 						<input type="reset" value="취소" onclick="javascript:history.back()">
 					</td>
 				</tr>	

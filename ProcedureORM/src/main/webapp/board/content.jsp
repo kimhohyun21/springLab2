@@ -9,7 +9,7 @@
 	<title>상세보기</title>
 	<link rel="stylesheet" type="text/css" href="table.css">
 	<script type="text/javascript">
-		console.log('자바스크립트${vo.name}');
+		console.log('자바스크립트: ${vo.name}');
 	</script>
 </head>
 <body>
@@ -20,7 +20,9 @@
 				<th width="20%">번호</th>
 				<td width="30%">${vo.no }</td>
 				<th width="20%">작성일</th>
-				<td width="30%">${vo.regdate }</td>
+				<td width="30%">
+					<fmt:formatDate value="${vo.regdate}" pattern="yyyy-MM-dd"/>
+				</td>
 			</tr>
 			<tr class="cont_tr">
 				<th width="20%">이름</th>

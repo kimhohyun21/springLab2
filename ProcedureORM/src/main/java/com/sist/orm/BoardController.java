@@ -48,8 +48,8 @@ public class BoardController {
 	@RequestMapping("board/content.do")
 	public String boardContentData(int no, int page, Model model){		
 		BoardVO vo=dao.boardContentData(no);
-		model.addAttribute(vo);
-		model.addAttribute(page);
+		model.addAttribute("vo", vo);
+		model.addAttribute("page", page);
 		System.out.println(vo.getSubject());	
 		return "board/content";
 	}
@@ -57,8 +57,17 @@ public class BoardController {
 	@RequestMapping("board/update.do")
 	public String boardUpdateData(int no, int page, Model model){		
 		BoardVO vo=dao.boardUpdateData(no);
-		model.addAttribute(vo);
-		model.addAttribute(page);		
+		model.addAttribute("vo", vo);
+		model.addAttribute("page", page);		
 		return "board/update";
+	}
+	
+	@RequestMapping("board/update_ok.do")
+	public String boardUpdate(BoardVO vo, int page, Model model){		
+		
+		boolean bCheck=dao.boardUpdate(vo);
+		model.addAttribute("bCheck", bCheck);		
+		model.addAttribute("page", page);		
+		return "board/update_ok";
 	}
 }

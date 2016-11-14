@@ -57,4 +57,20 @@ public class BoardDAO extends SqlSessionDaoSupport{
 		List<BoardVO> list=(List<BoardVO>)map.get("pResult");		
 		return list.get(0);
 	}
+	
+	public boolean boardUpdate(BoardVO vo){
+		boolean bCheck=false;
+		
+		Map map=new HashMap();
+		map.put("pNo", vo.getNo());
+		map.put("pName", vo.getName());
+		map.put("pSubject", vo.getSubject());
+		map.put("pContent", vo.getContent());
+		map.put("pPwd", vo.getPwd());
+		
+		getSqlSession().update("boardUpdate", map);		
+		String res=(String) map.get("pResult");
+		bCheck=Boolean.parseBoolean(res);
+		return bCheck;
+	}
 }

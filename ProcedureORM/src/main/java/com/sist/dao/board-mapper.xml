@@ -64,5 +64,18 @@
 	</parameterMap>
 	<select id="boardUpdateData" parameterMap="updateDataMap" statementType="CALLABLE">
 		{CALL boardUpdateData(?,?)}				
+	</select>
+	
+	<!-- 글 수정 -->
+	<parameterMap type="hashmap" id="updateMap">
+		<parameter property="pNo" mode="IN" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+		<parameter property="pName" mode="IN" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="pSubject" mode="IN" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="pContent" mode="IN" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="pPwd" mode="IN" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="pResult" mode="OUT" javaType="string" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<select id="boardUpdate" parameterMap="updateMap" statementType="CALLABLE">
+		{CALL boardUpdate(?,?,?,?,?,?)}				
 	</select>	
 </mapper>
