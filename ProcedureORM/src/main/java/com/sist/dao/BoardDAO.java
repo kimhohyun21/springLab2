@@ -73,4 +73,18 @@ public class BoardDAO extends SqlSessionDaoSupport{
 		bCheck=Boolean.parseBoolean(res);
 		return bCheck;
 	}
+	
+	public boolean boardDelete(int no, String pwd){
+		boolean bCheck=false;
+		
+		Map map=new HashMap();
+		map.put("pNo", no);
+		map.put("pPwd", pwd);
+		getSqlSession().update("boardDelete", map);
+		
+		String res=(String) map.get("pResult");
+		bCheck=Boolean.parseBoolean(res);
+		return bCheck;
+	}
+	
 }

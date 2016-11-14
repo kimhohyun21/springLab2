@@ -70,4 +70,22 @@ public class BoardController {
 		model.addAttribute("page", page);		
 		return "board/update_ok";
 	}
+	
+	@RequestMapping("board/delete.do")
+	public String boardDelete(int page, int no, Model model){		
+		
+		model.addAttribute("no", no);			
+		model.addAttribute("page", page);		
+		return "board/delete";
+	}
+	
+	@RequestMapping("board/delete_ok.do")
+	public String boardDelete(int no, int page, String pwd, Model model){		
+		System.out.println(no);
+		System.out.println(pwd);
+		boolean bCheck=dao.boardDelete(no, pwd);
+		model.addAttribute("bCheck", bCheck);
+		model.addAttribute("page", page);		
+		return "board/delete_ok";
+	}
 }

@@ -78,4 +78,15 @@
 	<select id="boardUpdate" parameterMap="updateMap" statementType="CALLABLE">
 		{CALL boardUpdate(?,?,?,?,?,?)}				
 	</select>	
+	
+	<!-- 글 삭제 -->
+	<parameterMap type="hashmap" id="deleteMap">
+		<parameter property="pNo" mode="IN" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+		<parameter property="pPwd" mode="IN" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="pResult" mode="OUT" javaType="string" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<select id="boardDelete" parameterMap="deleteMap" statementType="CALLABLE">
+		{CALL boardDelete(?,?,?)}				
+	</select>	
 </mapper>
+
