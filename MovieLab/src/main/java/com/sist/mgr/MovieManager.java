@@ -106,14 +106,25 @@ public class MovieManager {
 			Element storyElem=doc.select("div.story_area p.con_tx").first();
 			String story=storyElem.text();
 			story=story.replaceAll("[A-Za-z]", "");
-			story=story.replaceAll("'", "");
-			story=story.replaceAll("&", "");
+			story=story.replace("'", "");
+			story=story.replace("&", "");
 			
 			if(titleElem.text()!=null){
-				System.out.println(titleElem.text()+" "
+				/*System.out.println(titleElem.text()+" "
 									+genreElem.text()+" "
 									+directorElem.text()+" "
-									+actor+img+grade+star);
+									+actor+img+grade+star);*/
+				MovieVO vo=new MovieVO();
+				vo.setTitle(titleElem.text());
+				vo.setDirector(directorElem.text());
+				vo.setActor(actor);
+				vo.setGenre(genreElem.text());
+				vo.setPoster(img);
+				vo.setStory(story);
+				vo.setStar(star);
+				vo.setRank(String.valueOf(r));
+				vo.setGrade(grade);
+				dao.movieInsert(vo);
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage());

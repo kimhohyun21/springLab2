@@ -9,6 +9,7 @@ package com.sist.dao;
   스토리
   순위
   별점 
+  등급
  */
 public class MovieVO {
 	private int mno;
@@ -20,7 +21,14 @@ public class MovieVO {
 	private String story;
 	private String rank;
 	private String star;
+	private String grade;
 	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public int getMno() {
 		return mno;
 	}
