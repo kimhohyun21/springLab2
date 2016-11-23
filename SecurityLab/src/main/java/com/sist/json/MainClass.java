@@ -54,8 +54,8 @@ public class MainClass {
 			obj.put("age", 30);
 			
 			String gender="³²ÀÚ";
-			URLEncoder.encode(name, "EUC-KR");
-			obj.put("geder", gender);
+			URLEncoder.encode(gender, "EUC-KR");
+			obj.put("gender", gender);
 			
 			JSONArray list=new JSONArray();
 			list.add("010-3860-7688");
