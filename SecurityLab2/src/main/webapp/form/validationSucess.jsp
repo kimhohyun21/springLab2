@@ -7,6 +7,28 @@
 	<title>Sucess</title>
 </head>
 <body>
-
+	<div align="center">
+		<h3>유효성 통과</h3>
+		<table style="border: 1px solid black; border-collapse: collapse; width: 500px">
+				<tr style="border: 1px solid black;">
+					<th width="30%">이름</th>
+					<td width="70%">
+						${vo.name }
+					</td>
+				</tr>
+				<tr style="border: 1px solid black;">
+					<th width="30%">나이</th>
+					<td width="70%">
+						${vo.age }
+					</td>
+				</tr>
+				<tr style="border: 1px solid black;">
+					<th width="30%">비밀번호</th>
+					<td width="70%">
+						${vo.pwd }
+					</td>
+				</tr>
+			</table>
+	</div>
 </body>
 </html>

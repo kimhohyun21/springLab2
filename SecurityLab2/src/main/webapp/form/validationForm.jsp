@@ -11,25 +11,25 @@
 	<div align="center">
 		<h3>유효성 체크</h3>
 		<form:form method="post" action="validationForm_ok.do" commandName="validationForm1">
-			<table style="border: 1px solid black; border-collapse: collapse; width: 250px">
+			<table style="border: 1px solid black; border-collapse: collapse; width: 500px">
 				<tr style="border: 1px solid black;">
 					<th width="30%">이름</th>
 					<td width="70%">
-						<input type="text" name="name" size="20">
+						<input type="text" name="name" size="20"><br>
 						<font color="red"><form:errors path="name"/></font>
 					</td>
 				</tr>
 				<tr style="border: 1px solid black;">
 					<th width="30%">나이</th>
 					<td width="70%">
-						<input type="text" name="age" size="20">
+						<input type="text" name="age" size="20"><br>
 						<font color="red"><form:errors path="age"/></font>
 					</td>
 				</tr>
 				<tr style="border: 1px solid black;">
 					<th width="30%">비밀번호</th>
 					<td width="70%">
-						<input type="password" name="pwd" size="20">
+						<input type="password" name="pwd" size="20"><br>
 						<font color="red"><form:errors path="pwd"/></font>
 					</td>
 				</tr>

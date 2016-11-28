@@ -1,5 +1,7 @@
 package com.sist.validation;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ValidationController {
 	@RequestMapping("form/validationForm.do")
 	public String showForm(){
-		return "form/validationFrom";
+		return "form/validationForm";
 	}
 	
 	@RequestMapping("form/validationForm_ok.do")
-	public String validForm(ValidationForm1 validationForm, 
+	public String validForm(@Valid ValidationForm1 validationForm, 
 							BindingResult result, 
 							Model model){
 		
