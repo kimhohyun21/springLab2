@@ -7,4 +7,8 @@
  	<select id="selectUserList" resultType="user">
  		SELECT * FROM users ORDER BY userid
  	</select>
+ 	
+ 	<insert id="insertUser" parameterType="user">
+ 		INSERT INTO users VALUES (#{userId}, #{name}, #{gender}, #{city})
+ 	</insert> 	
  </mapper>

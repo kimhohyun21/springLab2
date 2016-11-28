@@ -19,4 +19,10 @@ public class UserServiceimpl implements UserService {
 		return userDAO.readAll();
 	}
 
+	@Override
+	public void insertUser(UserVO vo) {
+		userDAO.insert(vo);
+		
+	}
+
 }

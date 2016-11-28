@@ -23,7 +23,7 @@
 				<table class="table table-bordered table table-hover">
 					<tr>
 						<td>¾ÆÀÌµð : </td>
-						<td><input type="text" name="userid"></td>
+						<td><input type="text" name="userId"></td>
 					</tr>
 					
 					<tr>

@@ -8,5 +8,5 @@ public interface UserDAO {
 	
 	public List<UserVO> readAll();
 	
-	
+	public void insert(UserVO vo);
 }

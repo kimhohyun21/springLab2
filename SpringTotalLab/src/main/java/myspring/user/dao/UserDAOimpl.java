@@ -18,5 +18,12 @@ public class UserDAOimpl implements UserDAO {
 		List<UserVO> userList=userMapper.selectUserList();
 		return userList;
 	}
+
+	@Override
+	public void insert(UserVO vo) {
+		userMapper.insertUser(vo);
+		System.out.println("등록된 사용자 ID : "+vo.getUserId());
+	}
+	
 	
 }

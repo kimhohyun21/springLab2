@@ -66,15 +66,15 @@
 	<aop:aspectj-autoproxy/> <!-- @Aspect 어노테이션을 이용ㅎ나 AOP구현 -->
 	<bean id="performanceTraceAdvice" class="myspring.aop.xml.PerformanceTraceAdvice"/>
 	
-<!-- 	
+	
 	<aop:config>
 		<aop:aspect id="traceAspect" ref="performanceTraceAdvice">
 			<aop:around method="trace" pointcut="execution(public * myspring.user.service..*(..))"/>
-			 PointCut 표현식 문법
-				excute([접근제한자] 리턴타입 패턴, 패키지, 클래스 메서드 패턴())
+			<!--  PointCut 표현식 문법
+				excute([접근제한자] 리턴타입 패턴, 패키지, 클래스 메서드 패턴()) -->
 		</aop:aspect>
 	</aop:config>
--->
+
 
 	<!--  Component scan 설정 -->
 	<context:component-scan base-package="myspring.user.*,myspring.aop.annot.*"/>

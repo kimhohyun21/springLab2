@@ -9,6 +9,7 @@ import myspring.user.vo.UserVO;
 public interface UserMapper {
 	
 	List<UserVO> selectUserList();
+	void insertUser(UserVO vo);
 	
 }
 
