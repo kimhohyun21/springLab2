@@ -5,6 +5,6 @@
   
  <mapper namespace="myspring.user.dao.UserMapper">
  	<select id="selectUserList" resultType="user">
- 		select * from users order by userid
+ 		SELECT * FROM users ORDER BY userid
  	</select>
  </mapper>
