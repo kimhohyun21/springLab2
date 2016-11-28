@@ -2,7 +2,6 @@ package com.sist.procedure;
 import java.sql.*;
 
 import oracle.jdbc.driver.OracleTypes;
-import oracle.jdbc.oracore.OracleType;
 
 public class MainClass {
 	public static void main(String[] args){
