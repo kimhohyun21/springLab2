@@ -15,7 +15,7 @@ public interface UserMapper {
 	
 	void updateUser(UserVO user);
 	
-	void deleteUser(UserVO user);
+	void deleteUser(String id);
 }
 
 

@@ -18,9 +18,12 @@
 	</select>
 
 	<update id="updateUser" parameterType="User">
-		UPDATE user set name=#{name}, gender=#{gender}, city=#{city} WHERE userid=#{userId}
+		UPDATE users set name=#{name}, gender=#{gender}, city=#{city} WHERE userid=#{userId}
 	</update>
 	
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM users WHERE userid=#{value}
+	</delete>
 </mapper>  
 
 

@@ -98,13 +98,11 @@ public class UserController {
 	 * 	- URI 템플릿을 위한 @PathVariable을 통해 입력값을 얻어 낼 수 있음
 	 * 	- URI 템플릿 변수에 접근
 	 * 	- {변수명} 규칙을 통해 값을 메소드 파라미터를 통해 받음
-	 * 
-	 * 
 	 */
-	@RequestMapping("deleteUser.do")
+	@RequestMapping(value="deleteUser.do/{id}")
 	public String deleteUser(@PathVariable String id){
-		
-		return "";
+		userService.deleteUser(id);
+		return "redirect:/getUserList.do";
 	}
 }
 

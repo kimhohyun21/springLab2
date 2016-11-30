@@ -38,7 +38,7 @@ public class UserServiceimpl implements UserService{
 
 	@Override
 	public void deleteUser(String id) {
-		
+		userDAO.deleteUser(id);
 	}
 
 }

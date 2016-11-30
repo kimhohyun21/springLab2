@@ -40,11 +40,9 @@ public class UserDAOimpl implements UserDAO{
 
 	@Override
 	public void deleteUser(String id) {
-		
+		userMapper.deleteUser(id);
 		System.out.println("ªË¡¶µ» Record With ID = "+id);
-	}
-
-	
+	}	
 }
 
 
