@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import myspring.user.vo.UserVO;
 
-@Repository("userDAO")
-public class UserDAOimpl implements UserDAO {
+@Repository("useDAO")
+public class UserDAOimpl implements UserDAO{
 
 	@Autowired
 	UserMapper userMapper;
@@ -20,10 +20,39 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	@Override
-	public void insert(UserVO vo) {
-		userMapper.insertUser(vo);
-		System.out.println("등록된 사용자 ID : "+vo.getUserId());
+	public void insert(UserVO user) {
+		userMapper.insertUser(user);
+		System.out.println("등록된 Record UserId=" +user.getUserId()+
+				" Name= " +user.getName());
+		
 	}
-	
+
+	@Override
+	public UserVO read(String id) {
+		UserVO user=userMapper.selectUserById(id);
+		return user;
+	}
+
+	@Override
+	public void updateUser(UserVO user) {
+		userMapper.updateUser(user);		
+	}
+
+	@Override
+	public void deleteUser(String id) {
+		
+		System.out.println("삭제된 Record With ID = "+id);
+	}
+
 	
 }
+
+
+
+
+
+
+
+
+
+

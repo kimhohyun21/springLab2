@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myspring.user.dao.UserMapper">
+	
+	<select id="selectUserList" resultType="User">
+		SELECT * FROM users order by userId
+	</select>
+	
+	<insert id="insertUser" parameterType="User">
+		insert into users values(#{userId},#{name},#{gender},#{city})
+	</insert>
+	
+	<select id="selectUserById" parameterType="string" resultType="User">
+		select * from users where userid=#{id}
+	</select>
+
+	<update id="updateUser" parameterType="User">
+		UPDATE user set name=#{name}, gender=#{gender}, city=#{city} WHERE userid=#{userId}
+	</update>
+	
+</mapper>  
+
+
+
+

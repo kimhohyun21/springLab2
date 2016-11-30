@@ -6,12 +6,11 @@ public class UserVO {
 	private String gender;
 	private String city;
 	
-	public UserVO(){
-		
+	public UserVO() {
+
 	}
 
 	public UserVO(String userId, String name, String gender, String city) {
-		super();
 		this.userId = userId;
 		this.name = name;
 		this.gender = gender;
@@ -52,7 +51,10 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "User [userId="+userId+"userName="+name+"userGender="+gender+"userCity="+city+"]";
+		
+		return "User [userId=" +userId+ ", name=" +name+ ", gender="
+				+gender+ ", city=" +city+ "]";
 	}
+	
 	
 }

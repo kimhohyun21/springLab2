@@ -4,36 +4,43 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	
+
 	<!-- 
 		<사용자 관리 프로젝트>
-		아키텍쳐
-			: Laying(계층화)-프리젠테이션 계층 : 웹클라이언트의 요청 및 응답을 처리
-										상위계층(Service, Data Layer)에서 발생하는 Exception에 대한 처리
-										UI에서 입력한 데이터에 대한 유효성 검증(Validation)기능 제공.
-										컨트롤러 기능을 제공(@Controller)
-							서비스 계층  비즈니스 로직 처리,
-									트랜잭션 처리,
-									애플리케이션의 유연성 증가,
-									인터페이스를 제공
-									Service 인터페이스의 @Service 어노테이션을 사용한 Service 구현 클래스 제공.
-							데이터엑세스 계층 : 데이터 엑세스 로직을 객체화.
-										데이터를 조회, 등록, 수정, 삭제 기능 제공함.
-										ORM(Object Relational Mapping) 프레임워크를 사용하는 계층(Mybatis, Hibernate, JPA)
-										DAO 인터페이스와 @Repository 어노테이션을 사용해서 작성된 DAO구현 클래스 제공
-										USERDAO.java
-										UserDAOimpl.java
-										
-							도메인 모델 클래스 : VO(Value Object) 혹은 DTO(Data Transfer Object) 객체에 해당.
-											3개의 계층 전체에 걸쳐 사용
-											UserMapper.java
-											User-mapper.xml
-		
+		 -아키텍처
+		 	:Laying(계층화)-프리젠테이션 계층 : 웹클라이트의 요청및 응답을 처리
+		 								상위계층 (Sevice,Data Layer)에서 발생하는 Exception에 대한 처리
+		 								UI에서 입력한 데이터에 대한 유효성 검증(Validation)기능 제공.
+		 								컨트롤러 기능을 제공(@Controller)		UserController.java
+		 				   서비스 계층 : 비즈니스 로직 처리,
+		 				   			트랜잭션 처리,
+		 				   			애플리케이션의 유연성 증가.
+		 				   			인터페이스를 제공.
+		 				   			Service 인터페이스와 @Service 어노테이션을 사용한 Service 구현 클래스 제공.
+		 				   			UserService.java	
+		 				   			UserServiceimpl.java
+		 				   			
+		 				   데이터액세스 계층 : 데이터 액세스 로직을 객체화.
+		 				   				데이터를 조회,등록,수정,삭제 기능 제공함.
+		 				   				ORM(Object Relational Mapping) 프레임워크를 사용하는 계층(MyBatis,Hibernate,JPA)
+		 				   				DAO 인터페이스와 @Repository 어노테이션을 사용해서 작성된 DAO 구현 클래스 제공.
+		 				   				UserDAO.java
+		 				   				UserDAOimpl.java
+		 				   				
+		 				   				UserMapper.java
+		 				   				User-mapper.xml
+		 				   				
+		 				  도메인 모델 클래스 : VO(Value Object) 혹은 DTO(Data Transfer Object)객체에 해당.
+		 				  				3개의 계층 전체에 걸쳐 사용.
+		 				  				UserVO.java
+		 				  				
+	
 	 -->
-	<!--  MapperScannerConfigure -->
+	
+	<!-- MapperScannerConfigure -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="myspring.user.dao"/>
 		<property name="annotationClass" value="myspring.user.dao.MyMapper"/>
@@ -48,39 +55,63 @@
 		<property name="password" value="${db.password}"/>
 	</bean>
 	
-	<!-- mybatis-spring 실행 -->
+	<!-- mybatis-spring 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="/WEB-INF/config/SqlMapConfig.xml"/>
 		<property name="mapperLocations">
 			<list>
-				<value>/WEB-INF/config/user-mapper.xml</value>
+				<value>/WEB-INF/config/User-mapper.xml</value>
 			</list>
 		</property>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
-	<aop:aspectj-autoproxy/> <!-- @Aspect 어노테이션을 이용ㅎ나 AOP구현 -->
+	<aop:aspectj-autoproxy/>	<!-- @Aspect 어노테이션을 이용한 AOP구현 -->
 	<bean id="performanceTraceAdvice" class="myspring.aop.xml.PerformanceTraceAdvice"/>
 	
 	
+	<!-- 			PointCut 표현식 문법 	
+				execution([접근제한자]리턴타입 패턴  패키지.클래스 메서드 패턴(..)) -->
 	<aop:config>
 		<aop:aspect id="traceAspect" ref="performanceTraceAdvice">
 			<aop:around method="trace" pointcut="execution(public * myspring.user.service..*(..))"/>
-			<!--  PointCut 표현식 문법
-				excute([접근제한자] 리턴타입 패턴, 패키지, 클래스 메서드 패턴()) -->
 		</aop:aspect>
+		
 	</aop:config>
-
-
-	<!--  Component scan 설정 -->
-	<context:component-scan base-package="myspring.user.*,myspring.aop.annot.*"/>
 	
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-	p:prefix="/"
-	p:suffix=".jsp"
+	<!-- Component scan 설정 -->
+	<context:component-scan base-package="myspring.user,myspring.aop.annot"/>
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/"
+		p:suffix=".jsp"
 	/>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

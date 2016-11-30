@@ -9,6 +9,8 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	
+	
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -31,16 +33,17 @@
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
+	</filter-mapping>		
 
 
-	<!-- 스프링 웹 애플리케이션의 프론트 컨트롤러 -->
+	<!-- 스프링 웹 애플리케이션의 프런트 컨트롤러,
+		모든 어플리케이션의 요청상에 대한 핸들링 역할  -->
 	<servlet>
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/beans.xml</param-value>
+			<param-value>/WEB-INF/config/beans*.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

@@ -4,12 +4,26 @@ import java.util.*;
 
 import myspring.user.vo.UserVO;
 
-
 @MyMapper
 public interface UserMapper {
 	
 	List<UserVO> selectUserList();
-	void insertUser(UserVO vo);
 	
+	void insertUser(UserVO userVO);
+	
+	UserVO selectUserById(String id);
+	
+	void updateUser(UserVO user);
+	
+	void deleteUser(UserVO user);
 }
+
+
+
+
+
+
+
+
+
 
